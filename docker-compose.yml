@@ -7,19 +7,27 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
-  # backend:
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./backend/app:/code  # Sync your source code
-  #     - type: tmpfs      # Temporary in-memory storage for __pycache__
-  #       target: /code/__pycache__
-  #   # command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-  #   ports:
-  #     - "8000:8000"
-  #   networks:
-  #     - app-network
+    networks:
+      - app-network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+    - MONGO_URL=mongodb://mongodb:27017
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+
 
 networks:
   app-network:
