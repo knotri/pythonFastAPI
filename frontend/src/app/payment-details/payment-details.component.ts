@@ -170,7 +170,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.paymentForm.patchValue(mockPayment);
   }
 
-  private apiUrl = 'http://localhost:8000'; // Your API endpoint
+  private apiUrl = 'http://3.147.120.126:8000'; // Your API endpoint
   onSubmit(): void {
     if (this.paymentForm.valid) {
       const formData = this.paymentForm.value;

@@ -9,7 +9,8 @@ import { delay, Observable } from 'rxjs';
 })
 export class FetchPaymentService {
 
-  private apiUrl = 'http://localhost:8000/payments'; // Your API endpoint
+  // private apiUrl = 'http://localhost:8000/payments'; // Your API endpoint
+  private apiUrl = `3.147.120.126:8000/payments`; // Use the same host, port 8000
 
   constructor(private http: HttpClient) {}
 
