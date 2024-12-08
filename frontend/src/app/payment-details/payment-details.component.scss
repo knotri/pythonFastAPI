@@ -1,0 +1,31 @@
+.edit-payment-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+
+  form>* {
+    width: 100%;
+  }
+}
+
+.file-upload-container {
+  height: 56px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  background: #e0e2ec;
+  border-radius: 4px;
+  padding: 0 12px;
+  box-sizing: border-box;
+
+  .label {
+    margin-right: auto;
+  }
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}

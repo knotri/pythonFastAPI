@@ -1,0 +1,10 @@
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.mat-warn {
+  --mdc-text-button-label-text-color: red;
+}

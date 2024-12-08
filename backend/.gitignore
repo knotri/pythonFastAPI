@@ -1,0 +1,40 @@
+# FastAPI specific
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+.venv/
+fastapi-backend-env/
+instance/
+*.log
+*.pot
+celerybeat-schedule
+*.pyc
+
+# Environment variables
+.env
+*.env.*
+
+# Python virtual environments
+venv/
+ENV/
+env.bak/
+.venv/
+
+# IDE specific
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# General
+*.bak
+*.swp
+*~

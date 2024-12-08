@@ -1,0 +1,130 @@
+<div class="edit-payment-container">
+  <h2>Edit Payment Details</h2>
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="payeeFirstName" />
+      <mat-error *ngIf="paymentForm.get('payeeFirstName')?.invalid">
+        First Name is required and must be less than 50 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="payeeLastName" />
+      <mat-error *ngIf="paymentForm.get('payeeLastName')?.invalid">
+        Last Name is required and must be less than 50 characters.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="payeeEmail" />
+      <mat-error *ngIf="paymentForm.get('payeeEmail')?.invalid">
+        Enter a valid email.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="payeePhoneNumber" />
+      <mat-error *ngIf="paymentForm.get('payeePhoneNumber')?.invalid">
+        Enter a valid phone number.
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Payment Status</mat-label>
+      <mat-select formControlName="payeePaymentStatus">
+        <mat-option value="Pending">Pending</mat-option>
+        <mat-option value="Completed">Completed</mat-option>
+        <mat-option value="Overdue">Overdue</mat-option>
+      </mat-select>
+      <mat-error *ngIf="paymentForm.get('payeePaymentStatus')?.hasError('required')">
+        Payment Status is required.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="file-upload-container">
+      <mat-label class="label">Payment Evidence</mat-label>
+      <!-- Hidden file input -->
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        #fileInput
+        hidden
+      />
+      <span *ngIf="selectedFile" style="margin-right: 8px;">{{ selectedFile.name }}</span>
+      <!-- Material button to trigger file input -->
+      <button mat-raised-button color="primary" type="button" (click)="fileInput.click()">Select File</button>
+      <!-- Display selected file name -->
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Payment Due Date</mat-label>
+      <input matInput [matDatepicker]="dueDatePicker" formControlName="payeeDueDate" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #dueDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="payeeEmail" />
+      <mat-error *ngIf="paymentForm.get('payeeEmail')?.hasError('email')">
+        Please enter a valid email.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="payeeCountry" (input)="onAutocompliteInput()" />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAddress">
+        <mat-option *ngFor="let suggestion of selectValues.countries" [value]="suggestion">
+          {{ suggestion }} ttt
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>State</mat-label>
+      <input matInput [matAutocomplete]="stateAuto" formControlName="payeeProvinceOrState"
+        (input)="onAutocompliteInput()" />
+      <mat-autocomplete #stateAuto="matAutocomplete" [displayWith]="displayAddress">
+        <mat-option *ngFor="let suggestion of selectValues.states" [value]="suggestion">
+          {{ suggestion }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="payeeAddressLine1" />
+      <mat-error *ngIf="paymentForm.get('payeeAddressLine1')?.hasError('payeeAddressLine1')">
+        Please enter address.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <input matInput [matAutocomplete]="currencyAuto" formControlName="currency" (input)="onAutocompliteInput()" />
+      <mat-autocomplete #currencyAuto="matAutocomplete" [displayWith]="displayAddress">
+        <mat-option *ngFor="let suggestion of selectValues.currencies" [value]="suggestion">
+          {{ suggestion }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Add additional form fields similarly -->
+
+    <div class="actions">
+      <button mat-raised-button color="primary" >
+        Save
+      </button>
+      <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
